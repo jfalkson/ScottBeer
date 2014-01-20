@@ -1,0 +1,37 @@
+<h4>Beer!</h4>
+<%= link_to "Add another beer", new_beer_path %>
+
+
+
+<%= form_for(@comment) do |f| %>
+  <% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+      <% @comment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+   
+    <%= f.text_area :message, :placeholder => "Add a comment" %>
+    <%= f.hidden_field :beer_id, :value => @beers.id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<h2>Comments:<h2>
+<div>
+  <% @beers.comments.joins(:user).each do |comment| %>
+    <p><%= comment.message %> 
+    	Posted at <%= comment.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+    	by <%= comment.user.email %>
+    </p>
+  <% end %>
+</div>
