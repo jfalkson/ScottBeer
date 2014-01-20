@@ -13,11 +13,15 @@
 
 ActiveRecord::Schema.define(version: 20140120040554) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "beers", force: true do |t|
-    t.string  "name"
+    t.string  "title"
     t.string  "category"
     t.integer "rating"
     t.string  "country"
+    t.integer "year"
     t.string  "state_or_province"
     t.string  "link"
     t.integer "user_id"
@@ -47,8 +51,8 @@ ActiveRecord::Schema.define(version: 20140120040554) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "votes", force: true do |t|
     t.integer  "user_id"
