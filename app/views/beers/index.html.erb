@@ -1,53 +1,19 @@
 <h4>All your recommendations are below</h4>
-<%= link_to "Add a beer for Scott to try", new_beer_path %>
+<%= link_to "Add a beer", new_beer_path %>
 
 <table id="beers" class="display" data-source="<%= beers_url(format: "json") %>">
   <thead>
-    <tr>
-      <th>Category</th>
-      <th>Rating</th>
+<tr>
       <th>Beer Name</th>
-	  <th>Comments</th>
+      <th>Rating</th>
+      <th>Country</th>
+      <th>State or Province</th>
       <th>Votes</th>
-            
-    
-      <th>Upvote/Downvote?</th>
+      <th>Click to Comment</th>
+      <th> Up/downvote </th>
 
     </tr>
   </thead>
-
   <tbody>
-
-  <% @beer.each do |beer| %>
-      <tr>
-        <td><%= beer.category %></td>
-        <td><%= beer.rating %></td>
-        <td> <%= beer.title %> </td>
-       <td> <%= link_to "comments", beer_path(beer) %> 
-       </td>
-         <td>
-    <% if current_user && current_user.votes.where(:beer_id => beer.id, :up => true).present? %>
-    *
-  <% else %>
-    <%= link_to "+", votes_path(:vote => {:beer_id => beer.id, :up => true}), :method => :post %>
-  <% end %>
-  		
-  		 
- 
-    <% if current_user && current_user.votes.where(:beer_id => beer.id, :up => false).present? %>
-    *
-  <% else %>
-    <%= link_to "-", votes_path(:vote => {:beer_id => beer.id, :up => false}), :method => :post %>
-  <% end %>
-  		 </td>		 
-       
-       <td>
-       <%= beer.votes.where(:up => true).count - beer.votes.where(:up => false).count %>
-       </td>
-        </tr>
-<% end %>
-
-
   </tbody>
 </table>
-

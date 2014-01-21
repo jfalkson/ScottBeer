@@ -7,9 +7,14 @@ def show
 @comment= Comment.new
 end
 
+
 def index
-@beer=Beer.all
+  respond_to do |format|
+    format.html
+    format.json { render json: BeersDatatable.new(view_context) }
+  end
 end
+
 
 def new
  @beer=Beer.new
@@ -23,7 +28,7 @@ end
 #only let this method be accessible within this specific class
 private
 def allowed_params
-  params.require(:beer).permit(:name, :category, :rating, :state_or_province)
+  params.require(:beer).permit(:title, :category, :rating, :country, :state_or_province)
 end
 
 
