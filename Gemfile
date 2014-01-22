@@ -12,8 +12,9 @@ gem 'pg'
  ruby '1.9.3'
  
  
- #needed for heroku
-gem 'rails_12factor', group: :production
+ gem 'rails_12factor' # Heroku gem that enables static assets and logging 
+ gem 'unicorn' 
+
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
