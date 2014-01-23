@@ -1,7 +1,7 @@
 <h4>All your recommendations are below</h4>
 <%= link_to "Add a beer", new_beer_path %>
 
-<table id="beers" class="display" data-source="<%= beers_url(format: "json") %>">
+<table id="beers" class="display" <%= "data-no-turbolink" %> data-source="<%= beers_url(format: "json") %>">
   <thead>
 <tr>
       <th>Beer Name</th>
