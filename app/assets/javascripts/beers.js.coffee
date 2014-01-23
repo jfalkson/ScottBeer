@@ -1,4 +1,3 @@
-jQuery ->  
 ready = ->
   $('#beers').dataTable
     sPaginationType: "full_numbers"
@@ -9,4 +8,4 @@ ready = ->
 
 
 $(document).ready ready
-$(document).on "page:load", ready
+$(document).on("page:load", ready)
